@@ -1,0 +1,44 @@
+{
+  "name": "with-playwright",
+  "version": "0.1.0",
+  "description": "opt-in playwright browsers",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "prepublishOnly": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Xiphe/with-playwright.git"
+  },
+  "keywords": [
+    "jest",
+    "playwright",
+    "jasmine",
+    "node",
+    "browser",
+    "opt-in"
+  ],
+  "author": "Hannes Diercks <node@xiphe.net> (https://xiphe.net/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Xiphe/with-playwright/issues"
+  },
+  "homepage": "https://github.com/Xiphe/with-playwright#readme",
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom"
+  },
+  "peerDependencies": {
+    "playwright": "^0.11.1"
+  },
+  "devDependencies": {
+    "@types/jest": "25.1.3",
+    "@types/node": "13.7.4",
+    "jest": "25.1.0",
+    "playwright": "0.11.1",
+    "prettier": "1.19.1",
+    "ts-jest": "25.2.1",
+    "typescript": "3.8.2"
+  }
+}
