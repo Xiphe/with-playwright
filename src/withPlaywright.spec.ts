@@ -1,6 +1,7 @@
-import { BrowserContext } from 'playwright-core/lib/browserContext';
-import { Page } from 'playwright-core/lib/page';
-import { CRBrowser } from 'playwright-core/lib/chromium/crBrowser';
+import { BrowserContext } from 'playwright/lib/client/browserContext';
+import { Page } from 'playwright/lib/client/page';
+import { Browser } from 'playwright/lib/client/browser';
+import { LaunchedPage } from './getLaunchedPage';
 import withPlaywright from './withPlaywright';
 
 describe('withPlaywright', () => {
@@ -14,11 +15,13 @@ describe('withPlaywright', () => {
     const cb = jest.fn();
     withPlaywright(cb, { browsers: ['chromium'] });
 
-    const [name, pw] = cb.mock.calls[0];
+    expect(cb).toHaveBeenCalledTimes(1);
+
+    const [name, pw]: [string, Promise<LaunchedPage>] = cb.mock.calls[0];
     expect(name).toBe('chromium');
     const { browser, context, page } = await pw;
     expect(context).toEqual(expect.any(BrowserContext));
-    expect(browser).toEqual(expect.any(CRBrowser));
+    expect(browser).toEqual(expect.any(Browser));
     expect(page).toEqual(expect.any(Page));
   });
 });
