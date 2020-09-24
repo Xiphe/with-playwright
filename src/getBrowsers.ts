@@ -10,7 +10,7 @@ export type BrowserConfig = {
   WITH_PLAYWRIGHT_BROWSERS?: string;
   BROWSERS?: string;
   browsers?: PlaywrightBrowser[];
-};
+} | PlaywrightBrowser[];
 
 function isValidBrowser(name: string): name is PlaywrightBrowser {
   if (!AVAILABLE_PLAYWRIGHT_BROWSERS.includes(name as any)) {
@@ -21,6 +21,10 @@ function isValidBrowser(name: string): name is PlaywrightBrowser {
 }
 
 export function getBrowsers(env: BrowserConfig): PlaywrightBrowser[] {
+  if (Array.isArray(env)) {
+    return env.filter(isValidBrowser);
+  }
+
   if (Array.isArray(env.browsers)) {
     return env.browsers.filter(isValidBrowser);
   }
