@@ -1,8 +1,14 @@
-import { BrowserContext } from 'playwright/lib/client/browserContext';
-import { Page } from 'playwright/lib/client/page';
-import { Browser } from 'playwright/lib/client/browser';
+import { BrowserContext } from 'playwright-core/lib/client/browserContext';
+import { Page } from 'playwright-core/lib/client/page';
+import { Browser } from 'playwright-core/lib/client/browser';
 import { LaunchedPage } from './getLaunchedPage';
 import withPlaywright from './withPlaywright';
+
+if (typeof global.setImmediate === 'undefined') {
+  global.setImmediate = ((cb: any) => {
+    cb();
+  }) as any;
+}
 
 describe('withPlaywright', () => {
   it('does not call callback when no browser is configured in env', () => {

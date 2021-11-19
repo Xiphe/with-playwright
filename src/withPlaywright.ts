@@ -4,7 +4,7 @@ type Callback = (name: string, launchedPage: Promise<LaunchedPage>) => void;
 
 export default function withPlaywright(
   callBack: Callback,
-  config: BrowserConfig = process.env,
+  config: BrowserConfig = process.env as any,
 ) {
   const browsers = getBrowsers(config);
 
