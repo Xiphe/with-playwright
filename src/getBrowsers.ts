@@ -1,4 +1,4 @@
-const AVAILABLE_PLAYWRIGHT_BROWSERS = [
+export const AVAILABLE_PLAYWRIGHT_BROWSERS = [
   'chromium' as const,
   'firefox' as const,
   'webkit' as const,
@@ -6,11 +6,13 @@ const AVAILABLE_PLAYWRIGHT_BROWSERS = [
 
 export type PlaywrightBrowser = typeof AVAILABLE_PLAYWRIGHT_BROWSERS[0];
 
-export type BrowserConfig = {
-  WITH_PLAYWRIGHT_BROWSERS?: string;
-  BROWSERS?: string;
-  browsers?: PlaywrightBrowser[];
-} | PlaywrightBrowser[];
+export type BrowserConfig =
+  | {
+      WITH_PLAYWRIGHT_BROWSERS?: string;
+      BROWSERS?: string;
+      browsers?: PlaywrightBrowser[];
+    }
+  | PlaywrightBrowser[];
 
 function isValidBrowser(name: string): name is PlaywrightBrowser {
   if (!AVAILABLE_PLAYWRIGHT_BROWSERS.includes(name as any)) {
