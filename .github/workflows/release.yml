@@ -22,8 +22,17 @@ jobs:
       - run: npx playwright install-deps
       - run: npx playwright install
       - run: npm test
-      - run: |
-          npx semantic-release
+      - uses: cycjimmy/semantic-release-action@v2
+        with:
+          branches: |
+            [
+              '+([0-9])?(.{+([0-9]),x}).x',
+              'main',
+              'next',
+              'next-major',
+              { name: 'beta', prerelease: true },
+              { name: 'alpha', prerelease: true },
+            ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.SEMANTIC_RELEASE_BOT_NPM_TOKEN }}
