@@ -1,5 +1,8 @@
 # with-playwright
 
+[![Release](https://github.com/Xiphe/with-playwright/actions/workflows/release.yml/badge.svg)](https://github.com/Xiphe/with-playwright/actions/workflows/release.yml)
+[![semantic-release](https://img.shields.io/badge/semantic-release-e10079.svg?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+
 opt-in playwright browsers for testing
 
 ## Installation
