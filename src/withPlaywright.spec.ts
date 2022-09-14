@@ -1,6 +1,3 @@
-import { BrowserContext } from 'playwright-core/lib/client/browserContext';
-import { Page } from 'playwright-core/lib/client/page';
-import { Browser } from 'playwright-core/lib/client/browser';
 import { LaunchedPage } from './getLaunchedPage';
 import withPlaywright from './withPlaywright';
 import { AVAILABLE_PLAYWRIGHT_BROWSERS } from './getBrowsers';
@@ -29,9 +26,9 @@ describe('withPlaywright', () => {
       const [name, pw]: [string, Promise<LaunchedPage>] = cb.mock.calls[0];
       expect(name).toBe('chromium');
       const { browser, context, page } = await pw;
-      expect(context).toEqual(expect.any(BrowserContext));
-      expect(browser).toEqual(expect.any(Browser));
-      expect(page).toEqual(expect.any(Page));
+      expect(context.constructor.name).toBe('BrowserContext');
+      expect(browser.constructor.name).toBe('Browser');
+      expect(page.constructor.name).toBe('Page');
     },
   );
 });
